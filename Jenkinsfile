@@ -17,8 +17,8 @@ pipeline {
         }
           stage('Docker login') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: '', usernameVariable: 'mazood')]) {
-                    sh 'docker login -u ${docker} -p ${}'
+                withCredentials([usernamePassword(credentialsId: 'docker-login', passwordVariable: 'dockerlogin', usernameVariable: 'dockerlogin')]) {
+                    sh 'docker login -u ${docker-login} -p ${dockerlogin}'
                     sh 'docker push mazood/bankingproject-demo:1.0'
                 }
             }
